@@ -198,18 +198,6 @@ window.addEventListener('load', () => {
     setTimeout(typeWriter, 500);
 });
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroContent = document.querySelector('.hero-content');
-    const heroImage = document.querySelector('.hero-image');
-    
-    if (heroContent && heroImage) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-});
-
 // Skills animation on scroll
 const skillItems = document.querySelectorAll('.skill-item');
 
