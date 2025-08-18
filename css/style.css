@@ -125,6 +125,12 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 3rem; /* Add gap between logo and menu */
+}
+
+.nav-logo {
+    flex: 0 0 auto; /* Prevent logo from shrinking */
+    margin-right: 2rem; /* Additional space after logo */
 }
 
 .nav-logo a {
@@ -132,12 +138,15 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     color: #667eea;
     text-decoration: none;
+    white-space: nowrap; /* Prevent logo text from wrapping */
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced gap slightly to accommodate more items */
+    margin-left: auto; /* Push menu to the right */
+    flex-wrap: wrap; /* Allow wrapping if needed */
 }
 
 .nav-link {
@@ -596,6 +605,14 @@ section:not(.hero) {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav-container {
+        gap: 1rem; /* Smaller gap on mobile */
+    }
+    
+    .nav-logo {
+        margin-right: 1rem; /* Reduced margin on mobile */
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -607,6 +624,7 @@ section:not(.hero) {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
         padding: 2rem 0;
+        gap: 1rem; /* Consistent gap for mobile */
     }
 
     .nav-menu.active {
@@ -788,6 +806,10 @@ body.dark-mode .skill-category {
     color: #e0e0e0;
 }
 
+body.dark-mode .skill-category h3 {
+    color: #fff;
+}
+
 body.dark-mode .projects {
     background: #1a1a1a;
 }
@@ -801,6 +823,10 @@ body.dark-mode .project-content p {
     color: #a0aec0;
 }
 
+body.dark-mode .project-content h3 {
+    color: #fff;
+}
+
 body.dark-mode .project-tech span {
     background: #4a5568;
     color: #e0e0e0;
@@ -812,6 +838,10 @@ body.dark-mode .contact {
 
 body.dark-mode .contact-info p {
     color: #a0aec0;
+}
+
+body.dark-mode .contact-info h3 {
+    color: #fff;
 }
 
 body.dark-mode .contact-item {
@@ -852,6 +882,14 @@ body.dark-mode .nav-menu {
 
 body.dark-mode .bar {
     background: #e0e0e0;
+}
+
+body.dark-mode #theme-toggle {
+    color: #e0e0e0;
+}
+
+body.dark-mode #theme-toggle .fa-sun {
+    color: #facc15; /* Yellow color for sun icon */
 }
 
 /* Dark mode toggle button styles */

@@ -316,76 +316,33 @@ backToTopButton.addEventListener('mouseleave', () => {
     backToTopButton.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.3)';
 });
 
-// Dark mode toggle (bonus feature)
-const darkModeToggle = document.createElement('button');
-darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-darkModeToggle.className = 'dark-mode-toggle';
-darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
-darkModeToggle.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    background: #333;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-`;
-
-document.body.appendChild(darkModeToggle);
-
-// Dark mode functionality
-let isDarkMode = localStorage.getItem('darkMode') === 'true';
-
-// Apply saved dark mode preference on load
-if (isDarkMode) {
-    document.body.classList.add('dark-mode');
-    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    darkModeToggle.style.background = '#667eea';
-}
-
-darkModeToggle.addEventListener('click', () => {
-    isDarkMode = !isDarkMode;
-    document.body.classList.toggle('dark-mode');
+// Dark mode toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
     
-    if (isDarkMode) {
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        darkModeToggle.style.background = '#667eea';
-    } else {
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        darkModeToggle.style.background = '#333';
+    if (themeToggle && themeIcon) {
+        // Set theme and update icon
+        const setTheme = (isDark) => {
+            document.body.classList.toggle('dark-mode', isDark);
+            themeIcon.classList.toggle('fa-sun', isDark);
+            themeIcon.classList.toggle('fa-moon', !isDark);
+            localStorage.setItem('darkMode', isDark);
+        };
+
+        // Initialize theme
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const savedTheme = localStorage.getItem('darkMode');
+        setTheme(savedTheme !== null ? JSON.parse(savedTheme) : prefersDark);
+
+        // Toggle on click
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.contains('dark-mode');
+            setTheme(!isDark);
+        });
     }
-    
-    // Save preference to localStorage
-    localStorage.setItem('darkMode', isDarkMode);
-    
-    // Add a subtle animation feedback
-    darkModeToggle.style.transform = 'translateY(-50%) scale(0.9)';
-    setTimeout(() => {
-        darkModeToggle.style.transform = 'translateY(-50%) scale(1)';
-    }, 150);
 });
 
-// Add hover effect
-darkModeToggle.addEventListener('mouseenter', () => {
-    darkModeToggle.style.transform = 'translateY(-50%) scale(1.1)';
-    darkModeToggle.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.4)';
-});
-
-darkModeToggle.addEventListener('mouseleave', () => {
-    darkModeToggle.style.transform = 'translateY(-50%) scale(1)';
-    darkModeToggle.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
-});
 
 // Console message for developers
 console.log(`
@@ -420,12 +377,4 @@ formInputs.forEach(input => {
     input.addEventListener('blur', () => {
         input.parentElement.style.transform = 'scale(1)';
     });
-});
-
-// Performance monitoring
-window.addEventListener('load', () => {
-    if ('performance' in window) {
-        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-        console.log(`⚡ Page loaded in ${loadTime}ms`);
-    }
 });

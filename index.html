@@ -3,15 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramanath Madiwal - Front-End Developer</title>
+    <title>Ramanath Madiwal - Lead Front-End Developer</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Dropdown styles - you can move this to your style.css */
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #fff; /* Adjust to your navbar's background color */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 0.5rem 0;
+            margin-top: 5px;
+            min-width: 180px;
+            z-index: 1000;
+            border-radius: 8px;
+        }
+
+        .dropdown-menu .dropdown-item a {
+            color: #333; /* Adjust link color */
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            white-space: nowrap;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-menu .dropdown-item a:hover {
+            background-color: #f1f1f1; /* Adjust hover background */
+            color: #000; /* Adjust hover text color */
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .nav-item.dropdown .nav-link i {
+            font-size: 0.7em;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.dropdown:hover .nav-link i {
+            transform: rotate(180deg);
+        }
+
+        /* Dark mode toggle button styles */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            left: auto;
+            transform: translateY(-50%) scale(1);
+            width: 50px;
+            height: 50px;
+            background: rgb(51, 51, 51);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 1000;
+            transition: 0.3s;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
+        <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between;">
             <div class="nav-logo">
                 <a href="#home">Ramanath Madiwal</a>
             </div>
@@ -28,14 +101,29 @@
                 <li class="nav-item">
                     <a href="#projects" class="nav-link">Projects</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link">More <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="#timeline">Timeline</a></li>
+                        <li class="dropdown-item"><a href="#certifications">Certifications</a></li>
+                        <li class="dropdown-item"><a href="#articles">Articles</a></li>
+                        <li class="dropdown-item"><a href="#awards">Awards</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
-            <div class="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <!-- Dark/Light mode toggle button -->
+                <button id="theme-toggle" aria-label="Toggle dark mode" style="background: none; border: none; cursor: pointer; font-size: 1.4rem; color: #333;">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <div class="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -47,13 +135,13 @@
                 <h1 class="hero-title">
                     Hi, I'm <span class="highlight">Ramanath Madiwal</span>
                 </h1>
-                <h2 class="hero-subtitle">Front-End Developer</h2>
+                <h2 class="hero-subtitle">Lead Engineer of 12 years experience</h2>
                 <p class="hero-description">
-                    I create beautiful, responsive, and user-friendly web experiences 
-                    using modern technologies and best practices.
+                    As a technical lead and front-end developer, I architect high-performance, accessible web applications. I specialize in modernizing complex systems into seamless, user-centric experiences
                 </p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="assets/Ramanath-Madiwal.pdf" class="btn btn-secondary" download target="_blank" rel="noopener noreferrer">Download Resume</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                 </div>
             </div>
@@ -73,36 +161,63 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm a passionate front-end developer with 3+ years of experience creating 
-                        engaging and intuitive user interfaces. I specialize in modern JavaScript 
-                        frameworks and have a keen eye for design and user experience.
+            <h2 class="section-title" style="text-align:center; margin-bottom:2.5rem;">
+                About Me
+            </h2>
+            <div class="about-content" style="display: flex; flex-wrap: wrap; gap: 3rem; justify-content: center; align-items: flex-start;">
+                <!-- Left Column -->
+                <div class="about-text" style="flex: 1 1 400px; max-width: 500px; min-width: 280px; display: flex; flex-direction: column; justify-content: center;">
+                    <p style="font-size:1.08rem; line-height:1.7; margin-bottom:1.5rem;">
+                        <strong>Lead Front End Engineer</strong> with 12+ years of experience building scalable, high-quality web applications that drive business results. I specialize in leading teams, mentoring developers, and delivering solutions that make a measurable impact.
                     </p>
-                    <p>
-                        When I'm not coding, you can find me exploring new technologies, 
-                        contributing to open-source projects, or sharing my knowledge through 
-                        blog posts and tutorials.
+                    <ul style="font-size:1.08rem; line-height:1.7; margin-bottom:1.5rem; list-style: disc inside; padding-left: 0;">
+                        <li style="margin-bottom:0.7em;">
+                            <strong>Kaplan Inc:</strong> Led the USMLE Prep platform project, attracting 1M+ users and generating $1M+ revenue.
+                        </li>
+                        <li style="margin-bottom:0.7em;">
+                            <strong>PMBR Prep Test:</strong> Delivered a solution that increased sales by $2M+.
+                        </li>
+                        <li style="margin-bottom:0.7em;">
+                            <strong>CFA Exam Simulation:</strong> Launched the first simulation interface on Kaplan ATOM, safeguarding $1M+ revenue.
+                        </li>
+                    </ul>
+                    <p style="font-size:1.08rem; line-height:1.7;">
+                        <span style="display:block; margin-bottom:0.5em;">
+                            <strong>Core stack:</strong> Angular, TypeScript, Rxjs, NgRX
+                        </span>
+                        <span style="display:block; margin-bottom:0.5em;">
+                            <strong>Tools:</strong> Git, Jira, Figma
+                        </span>
+                        <span style="display:block;">
+                            I build robust, accessible apps (WCAG 2.1 AA compliant) and thrive in cross-functional teams.
+                        </span>
                     </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <h3>50+</h3>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat">
-                            <h3>3+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat">
-                            <h3>20+</h3>
-                            <p>Happy Clients</p>
-                        </div>
-                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://via.placeholder.com/400x500" alt="About me">
+                <!-- Right Column -->
+                <div class="about-text" style="flex: 1 1 400px; max-width: 500px; min-width: 280px; display: flex; flex-direction: column; justify-content: center;">
+                    <h4 style="font-size:1.1rem; font-weight:600; margin-bottom:1rem; border-bottom:2px solid #7c3aed; display:inline-block; padding-bottom:0.2em;">
+                        I have a proven track record of:
+                    </h4>
+                    <ul style="font-size:1.05rem; line-height:1.7; margin-bottom:1.5rem; padding-left:1.2em;">
+                        <li style="margin-bottom:0.7em;">
+                            <strong>Leading and Mentoring</strong>: Guided and mentored junior developers and led project teams to complete major software upgrades.
+                        </li>
+                        <li style="margin-bottom:0.7em;">
+                            <strong>Delivering High-Quality Products</strong>: Conducted thorough code reviews to ensure quality and achieved high unit test coverage (up to 95%).
+                        </li>
+                        <li style="margin-bottom:0.7em;">
+                            <strong>Strategic Collaboration</strong>: Collaborated with cross-functional teams, including product managers, UX researchers, and data scientists, to refine products and services.
+                        </li>
+                        <li style="margin-bottom:0.7em;">
+                            <strong>Problem-Solving</strong>: Adept at identifying and resolving complex bugs and performance issues to improve user experience and customer satisfaction.
+                        </li>
+                    </ul>
+                    <p style="font-size:1.05rem; margin-bottom:1rem;">
+                        Highly motivated and resilient, recognized with the <strong>Kaplan Star Award</strong> and the <strong>HCL League of the Extraordinary Award</strong> for continuous high performance and extraordinary contributions.
+                    </p>
+                    <p style="font-size:1.05rem;">
+                        Now seeking an opportunity to leverage my experience in a leadership capacity, to build and manage high-performing teams, drive innovation, and contribute to significant business growth.
+                    </p>
                 </div>
             </div>
         </div>
@@ -159,91 +274,59 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title">Featured Work</h2>
             <div class="projects-grid">
+                <!-- Project Card 1 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250" alt="E-commerce Platform">
-                        <div class="project-overlay">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-outline">View Code</a>
-                        </div>
+                        <img src="https://placehold.co/600x400/2563eb/ffffff?text=E-commerce+Platform" alt="E-commerce Platform Project">
                     </div>
                     <div class="project-content">
-                        <h3>E-commerce Platform</h3>
-                        <p>A modern e-commerce platform built with React and Node.js, featuring user authentication, payment integration, and admin dashboard.</p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                            <span>Stripe</span>
+                        <h3>E-commerce Customer Dashboard</h3>
+                        <p>A full-featured dashboard to track order history, wishlists, and user profiles.</p>
+                        <div class="project-buttons" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+                            <a href="#" class="btn" style="background-color: #22c55e; color: white;">View Live</a>
+                            <a href="#" class="btn" style="background-color: #ef4444; color: white;">View Code</a>
                         </div>
+                        <a href="case-study.html" class="btn" style="background-color: #3b82f6; color: white; display: inline-block; margin-top: 1rem;">View Case Study</a>
                     </div>
                 </div>
 
+                <!-- Project Card 2 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250" alt="Task Management App">
-                        <div class="project-overlay">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-outline">View Code</a>
-                        </div>
+                        <img src="https://placehold.co/600x400/9333ea/ffffff?text=Real-time+Chat+App" alt="Real-time Chat App">
                     </div>
                     <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
-                        <div class="project-tech">
-                            <span>Vue.js</span>
-                            <span>Firebase</span>
-                            <span>Vuetify</span>
-                            <span>Socket.io</span>
+                        <h3>Real-time Chat Application</h3>
+                        <p>An app demonstrating real-time data synchronization with WebSockets.</p>
+                        <div class="project-buttons" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+                            <a href="#" class="btn" style="background-color: #22c55e; color: white;">View Live</a>
+                            <a href="#" class="btn" style="background-color: #ef4444; color: white;">View Code</a>
                         </div>
+                        <a href="#" class="btn" style="background-color: #3b82f6; color: white; display: inline-block; margin-top: 1rem;">View Details</a>
                     </div>
                 </div>
 
+                <!-- Project Card 3 -->
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250" alt="Weather Dashboard">
-                        <div class="project-overlay">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-outline">View Code</a>
-                        </div>
+                        <img src="https://placehold.co/600x400/0f766e/ffffff?text=Data+Visualization" alt="Data Visualization Dashboard">
                     </div>
                     <div class="project-content">
-                        <h3>Weather Dashboard</h3>
-                        <p>An interactive weather dashboard with location-based forecasts, charts, and responsive design for all devices.</p>
-                        <div class="project-tech">
-                            <span>JavaScript</span>
-                            <span>Chart.js</span>
-                            <span>OpenWeather API</span>
-                            <span>CSS Grid</span>
+                        <h3>Interactive Data Dashboard</h3>
+                        <p>Visualizing complex data sets using D3.js and a scalable component architecture.</p>
+                        <div class="project-buttons" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+                            <a href="#" class="btn" style="background-color: #22c55e; color: white;">View Live</a>
+                            <a href="#" class="btn" style="background-color: #ef4444; color: white;">View Code</a>
                         </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://via.placeholder.com/400x250" alt="Portfolio Website">
-                        <div class="project-overlay">
-                            <a href="#" class="btn btn-small">Live Demo</a>
-                            <a href="#" class="btn btn-small btn-outline">View Code</a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Portfolio Website</h3>
-                        <p>A responsive portfolio website with smooth animations, dark mode toggle, and optimized performance.</p>
-                        <div class="project-tech">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
-                            <span>GSAP</span>
-                        </div>
+                        <a href="#" class="btn" style="background-color: #3b82f6; color: white; display: inline-block; margin-top: 1rem;">View Details</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -258,15 +341,15 @@
                     <div class="contact-items">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>john.doe@email.com</span>
+                            <span>ramanath.madiwal@gmail.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (555) 123-4567</span>
+                            <span>+91 7975029780</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>New York, NY</span>
+                            <span>Bengaluru, India</span>
                         </div>
                     </div>
                     <div class="social-links">
@@ -302,7 +385,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 John Doe. All rights reserved.</p>
+            <p>&copy; 2025 Ramanath Madiwal. All rights reserved.</p>
         </div>
     </footer>
 
