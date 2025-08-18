@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study - E-commerce Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Tailwind CSS for case study styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to integrate with existing theme */
+        body {
+            background-color: #111827; /* Dark background for case study page */
+            color: #d1d5db;
+        }
+        .navbar {
+            background: rgba(17, 24, 39, 0.95); /* Dark navbar to match page */
+        }
+        .nav-link {
+            color: #d1d5db;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #818cf8; /* Lighter purple for dark bg */
+        }
+        .nav-logo a {
+            color: #818cf8;
+        }
+        .footer {
+            background: #1f2937;
+        }
+        /* Custom container for case study content */
+        .case-study-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .list-circle {
+            list-style-type: circle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html#home">Ramanath Madiwal</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main style="padding-top: 80px;"> <!-- Offset for fixed navbar -->
+        <div id="case-study-view" class="case-study-container">
+            <header class="text-center py-12">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-400">E-commerce Customer Dashboard</h1>
+                <p class="mt-4 text-xl sm:text-2xl font-light text-gray-400">A case study in building a high-performance, accessible e-commerce front end.</p>
+            </header>
+    
+            <!-- The Narrative Sections -->
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 text-gray-200">1. Problem & Functional Requirements</h2>
+                <p class="text-gray-400 leading-relaxed">
+                    As the technical lead, my primary goal was to modernize a legacy e-commerce front end. The old platform was slow, not mobile-responsive, and difficult for users to navigate. The new system needed to handle <strong>real-time updates</strong> for stock and order status, provide a seamless <strong>cross-device user experience</strong>, and be <strong>highly performant</strong> on low-bandwidth connections.
+                </p>
+            </section>
+    
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 text-gray-200">2. UX/UI & Design Philosophy</h2>
+                <p class="text-gray-400 leading-relaxed">
+                    I worked closely with the design team to translate high-fidelity mockups into a component-based architecture. Our UX/UI philosophy was to prioritize clarity and minimize user friction. We implemented a <strong>"before-and-after" visual flow</strong> for the checkout process to demonstrate the improved user journey. I ensured every UI component, from buttons to form inputs, had a consistent state for hover, focus, and disabled states.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <img class="lazy-image rounded-lg shadow-md" src="https://placehold.co/600x400/1e293b/475569?text=Loading..." data-src="https://placehold.co/600x400/475569/ffffff?text=Before+User+Flow" alt="Before User Flow">
+                    <img class="lazy-image rounded-lg shadow-md" src="https://placehold.co/600x400/1e293b/475569?text=Loading..." data-src="https://placehold.co/600x400/22c55e/ffffff?text=After+User+Flow" alt="After User Flow">
+                </div>
+            </section>
+    
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 text-gray-200">3. Technical Architecture & Design Patterns</h2>
+                <p class="text-gray-400 leading-relaxed">
+                    The project was built using <strong>React</strong> with <strong>Zustand</strong> for state management. This stack was chosen for its performance, modularity, and lightweight nature. Key design patterns were critical to maintain code quality and scalability:
+                </p>
+                <ul class="list-disc list-inside mt-4 text-gray-400 leading-relaxed space-y-2">
+                    <li>
+                        <strong>Component-Based Architecture:</strong> By breaking the UI into small, reusable components (e.g., `ProductCard`, `CartButton`), we made the codebase easier to maintain, test, and scale.
+                    </li>
+                    <li>
+                        <strong>Container/Presenter Pattern:</strong> We separated business logic (containers) from the presentational components (UI) to create a clear separation of concerns, which streamlined development and debugging.
+                    </li>
+                    <li>
+                        <strong>Observer Pattern:</strong> I implemented the Observer pattern for the real-time order status updates. This allowed the UI to automatically react to changes in the database without continuous polling, improving performance and user experience.
+                    </li>
+                </ul>
+            </section>
+    
+            <section class="mb-12">
+                <h2 class="text-2xl font-bold mb-4 text-gray-200">4. Accessibility & Edge User Cases</h2>
+                <p class="text-gray-400 leading-relaxed">
+                    A core priority was to build an inclusive product. I audited the application with accessibility in mind from day one.
+                </p>
+                <ul class="list-disc list-inside mt-4 text-gray-400 leading-relaxed space-y-2">
+                    <li>
+                        <strong>Accessibility:</strong> All interactive elements were built with <strong>proper ARIA attributes</strong> for screen readers and were fully navigable via keyboard, meeting WCAG 2.1 standards.
+                    </li>
+                    <li>
+                        <strong>Edge User Cases:</strong> We handled a variety of edge cases, including:
+                        <ul class="list-circle list-inside ml-6 mt-2">
+                            <li>Graceful error handling for API failures.</li>
+                            <li>UI adjustments for users with large text preferences.</li>
+                            <li>Optimizations for users on slow or intermittent network connections.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <a href="index.html#projects" class="inline-block mt-8 mb-12 text-blue-400 hover:underline">&larr; Back to Projects</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Ramanath Madiwal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
