@@ -225,6 +225,10 @@ section:not(.hero) {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    /* Fallback for browsers that don't support background-clip: text */
+    color: #667eea;
+    font-weight: 700; /* Make it bold for better visibility */
+    display: inline-block; /* Better rendering for gradient text */
 }
 
 .hero-subtitle {

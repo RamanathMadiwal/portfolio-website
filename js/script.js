@@ -174,28 +174,48 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
-// Typing animation for hero section
-const heroTitle = document.querySelector('.hero-title');
-const titleText = heroTitle.innerHTML;
-
-function typeWriter() {
-    heroTitle.innerHTML = '';
-    let i = 0;
+// Simple and reliable typing animation that preserves HTML highlighting
+function createTypingAnimation() {
+    const heroTitle = document.querySelector('.hero-title');
     
-    function type() {
-        if (i < titleText.length) {
-            heroTitle.innerHTML += titleText.charAt(i);
-            i++;
-            setTimeout(type, 50);
+    // Split the content into typing phases
+    const phases = [
+        "Hi, I'm ",
+        'Hi, I\'m <span class="highlight">R</span>',
+        'Hi, I\'m <span class="highlight">Ra</span>',
+        'Hi, I\'m <span class="highlight">Ram</span>',
+        'Hi, I\'m <span class="highlight">Rama</span>',
+        'Hi, I\'m <span class="highlight">Raman</span>',
+        'Hi, I\'m <span class="highlight">Ramana</span>',
+        'Hi, I\'m <span class="highlight">Ramanat</span>',
+        'Hi, I\'m <span class="highlight">Ramanath</span>',
+        'Hi, I\'m <span class="highlight">Ramanath </span>',
+        'Hi, I\'m <span class="highlight">Ramanath M</span>',
+        'Hi, I\'m <span class="highlight">Ramanath Ma</span>',
+        'Hi, I\'m <span class="highlight">Ramanath Mad</span>',
+        'Hi, I\'m <span class="highlight">Ramanath Madi</span>',
+        'Hi, I\'m <span class="highlight">Ramanath Madiw</span>',
+        'Hi, I\'m <span class="highlight">Ramanath Madiwa</span>',
+        'Hi, I\'m <span class="highlight">Ramanath Madiwal</span>'
+    ];
+    
+    let currentPhase = 0;
+    heroTitle.innerHTML = '';
+    
+    function typeNextPhase() {
+        if (currentPhase < phases.length) {
+            heroTitle.innerHTML = phases[currentPhase];
+            currentPhase++;
+            setTimeout(typeNextPhase, 100);
         }
     }
     
-    type();
+    typeNextPhase();
 }
 
 // Start typing animation when page loads
 window.addEventListener('load', () => {
-    setTimeout(typeWriter, 500);
+    setTimeout(createTypingAnimation, 500);
 });
 
 // Skills animation on scroll
